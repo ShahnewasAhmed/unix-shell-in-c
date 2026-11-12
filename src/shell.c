@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "lexer.h"
+#include "ast.h"
 
 void shell_loop(void)
 {
@@ -23,8 +25,25 @@ void shell_loop(void)
         {
             continue;
         }
+        TokenList *tokens = lexer_tokenize(line);
 
-        printf("You entered: %s", line);
+        if (tokens == NULL)
+        {
+            free(line);
+            continue;
+        }
+
+        ASTNode *root = parser_parse(tokens);
+
+        if (root != NULL)
+        {
+            // Later: execute AST here
+
+            ast_free(root);
+        }
+
+        token_list_free(tokens);
+        free(line);
     }
     free(line);
 }

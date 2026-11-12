@@ -36,5 +36,7 @@ typedef struct
 
 TokenList *lexer_tokenize(const char *input);
 void token_list_free(TokenList *list);
+int is_operator(char c);
+int skip_whitespace(const char *input, int i);
 
 #endif

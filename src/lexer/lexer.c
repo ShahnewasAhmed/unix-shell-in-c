@@ -69,6 +69,8 @@ TokenType recognize_operator(const char *input, int *length)
             *length = 2;
             return TOKEN_ERROR;
         }
+        *length = 0;
+        return TOKEN_ERROR_TYPE;
 
     default:
         *length = 0;
