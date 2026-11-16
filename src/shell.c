@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "lexer.h"
 #include "ast.h"
+#include "parse.h"
+#include "signals.h"
+#include "executor.h"
 
 void shell_loop(void)
 {
@@ -10,6 +13,11 @@ void shell_loop(void)
 
     while (1)
     {
+        if (child_exited)
+        {
+            child_exited = 0;
+            reap_background_processes();
+        }
         printf("CSH> ");
 
         fflush(stdout);
@@ -29,7 +37,6 @@ void shell_loop(void)
 
         if (tokens == NULL)
         {
-            free(line);
             continue;
         }
 
@@ -37,13 +44,11 @@ void shell_loop(void)
 
         if (root != NULL)
         {
-            // Later: execute AST here
-
+            execute_node(root);
             ast_free(root);
         }
 
         token_list_free(tokens);
-        free(line);
     }
     free(line);
 }

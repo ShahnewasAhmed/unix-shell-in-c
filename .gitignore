@@ -1,0 +1,4 @@
+# Compiled binaries
+csh
+test_lexer
+test_parser
