@@ -67,6 +67,81 @@ apply_redirections(Redirection *redirections, int count)
     return 0;
 }
 
+static int execute_builtin_with_redirections(
+    int argc,
+    char **argv,
+    Redirection *redirections,
+    int redirection_count)
+{
+    fflush(NULL);
+
+    int saved_stdin = dup(STDIN_FILENO);
+    int saved_stdout = dup(STDOUT_FILENO);
+    int saved_stderr = dup(STDERR_FILENO);
+
+    if (saved_stdin == -1 || saved_stdout == -1 || saved_stderr == -1)
+    {
+        perror("dup");
+
+        if (saved_stdin != -1)
+            close(saved_stdin);
+
+        if (saved_stdout != -1)
+            close(saved_stdout);
+
+        if (saved_stderr != -1)
+            close(saved_stderr);
+
+        return 1;
+    }
+
+    if (apply_redirections(redirections, redirection_count) == -1)
+    {
+        if (dup2(saved_stdin, STDIN_FILENO) == -1)
+            perror("restore stdin");
+
+        if (dup2(saved_stdout, STDOUT_FILENO) == -1)
+            perror("restore stdout");
+
+        if (dup2(saved_stderr, STDERR_FILENO) == -1)
+            perror("restore stderr");
+
+        close(saved_stdin);
+        close(saved_stdout);
+        close(saved_stderr);
+
+        return 1;
+    }
+
+    int status = execute_builtin(argc, argv);
+
+    fflush(NULL);
+
+    if (dup2(saved_stdin, STDIN_FILENO) == -1)
+    {
+        perror("restore stdin");
+        status = 1;
+    }
+
+    if (dup2(saved_stdout, STDOUT_FILENO) == -1)
+    {
+        perror("restore stdout");
+        status = 1;
+    }
+
+    if (dup2(saved_stderr, STDERR_FILENO) == -1)
+    {
+        perror("restore stderr");
+        status = 1;
+    }
+
+    close(saved_stdin);
+    close(saved_stdout);
+    close(saved_stderr);
+
+    return status;
+}
+
 static int execute_external(char **argv, Redirection *redirections, int redirection_count)
 {
     pid_t pid = fork();
@@ -404,7 +479,11 @@ int execute_node(ASTNode *node)
     }
     if (is_builtin(argv[0]))
     {
-        return execute_builtin(argc, argv);
+        return execute_builtin_with_redirections(
+            argc,
+            argv,
+            node->data.command.redirections,
+            node->data.command.redirection_count);
     }
     return execute_external(argv, node->data.command.redirections, node->data.command.redirection_count);
 }
