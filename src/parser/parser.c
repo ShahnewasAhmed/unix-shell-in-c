@@ -20,6 +20,7 @@ ASTNode *parse_list(TokenList *tokens, int *position)
 
             if (background == NULL)
             {
+                ast_free(left);
                 return NULL;
             }
 
@@ -38,12 +39,15 @@ ASTNode *parse_list(TokenList *tokens, int *position)
         ASTNode *next = parse_and_or(tokens, position);
         if (next == NULL)
         {
+            ast_free(left);
             return NULL;
         }
 
         ASTNode *node = malloc(sizeof(ASTNode));
         if (node == NULL)
         {
+            ast_free(left);
+            ast_free(next);
             return NULL;
         }
 
@@ -72,12 +76,15 @@ ASTNode *parse_and_or(TokenList *tokens, int *position)
         ASTNode *next = parse_pipeline(tokens, position);
         if (next == NULL)
         {
+            ast_free(left);
             return NULL;
         }
 
         ASTNode *node = malloc(sizeof(ASTNode));
         if (node == NULL)
         {
+            ast_free(left);
+            ast_free(next);
             return NULL;
         }
 
@@ -105,12 +112,14 @@ ASTNode *parse_pipeline(TokenList *tokens, int *position)
     ASTNode *node = malloc(sizeof(ASTNode));
     if (node == NULL)
     {
+        ast_free(first);
         return NULL;
     }
     node->type = NODE_PIPELINE;
     node->data.pipeline.commands = malloc(sizeof(ASTNode *));
     if (node->data.pipeline.commands == NULL)
     {
+        ast_free(first);
         free(node);
         return NULL;
     }
@@ -123,12 +132,15 @@ ASTNode *parse_pipeline(TokenList *tokens, int *position)
         ASTNode *next = parse_command(tokens, position);
         if (next == NULL)
         {
+            ast_free(node);
             return NULL;
         }
 
         ASTNode **temp = realloc(node->data.pipeline.commands, sizeof(ASTNode *) * (node->data.pipeline.count + 1));
         if (temp == NULL)
         {
+            ast_free(next);
+            ast_free(node);
             return NULL;
         }
         node->data.pipeline.commands = temp;
@@ -172,12 +184,14 @@ ASTNode *parse_command(TokenList *tokens, int *position)
             char **temp = realloc(node->data.command.argv, (sizeof(char *) * (node->data.command.argc + 2)));
             if (temp == NULL)
             {
+                ast_free(node);
                 return NULL;
             }
             node->data.command.argv = temp;
             node->data.command.argv[node->data.command.argc] = strdup(tokens->tokens[*position].value);
             if (node->data.command.argv[node->data.command.argc] == NULL)
             {
+                ast_free(node);
                 return NULL;
             }
             node->data.command.argc++;
@@ -193,11 +207,13 @@ ASTNode *parse_command(TokenList *tokens, int *position)
             (*position)++;
             if (tokens->tokens[*position].type != TOKEN_WORD)
             {
+                ast_free(node);
                 return NULL;
             }
             Redirection *temp = realloc(node->data.command.redirections, sizeof(Redirection) * (node->data.command.redirection_count + 1));
             if (temp == NULL)
             {
+                ast_free(node);
                 return NULL;
             }
             node->data.command.redirections = temp;
@@ -206,6 +222,7 @@ ASTNode *parse_command(TokenList *tokens, int *position)
             node->data.command.redirections[index].filename = strdup(tokens->tokens[*position].value);
             if (node->data.command.redirections[index].filename == NULL)
             {
+                ast_free(node);
                 return NULL;
             }
 
@@ -214,10 +231,14 @@ ASTNode *parse_command(TokenList *tokens, int *position)
             (*position)++;
         }
         else
+        {
+            ast_free(node);
             return NULL;
+        }
     }
     if (node->data.command.argc == 0)
     {
+        ast_free(node);
         return NULL;
     }
 

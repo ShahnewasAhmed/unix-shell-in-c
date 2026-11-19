@@ -1,0 +1,772 @@
+==548393== Memcheck, a memory error detector
+==548393== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==548393== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==548393== Command: ./tests/unit/test_executor
+==548393== Parent PID: 387798
+==548393== 
+==548401== 
+==548401== HEAP SUMMARY:
+==548401==     in use at exit: 88 bytes in 3 blocks
+==548401==   total heap usage: 12 allocs, 9 frees, 2,731 bytes allocated
+==548401== 
+==548401== 16 bytes in 1 blocks are still reachable in loss record 1 of 3
+==548401==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548401==    by 0x109942: create_command (test_executor.c:103)
+==548401==    by 0x109A3D: test_status (test_executor.c:133)
+==548401==    by 0x10B4E2: main (test_executor.c:894)
+==548401== 
+==548401== 32 bytes in 1 blocks are still reachable in loss record 2 of 3
+==548401==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548401==    by 0x492443E: strdup (strdup.c:42)
+==548401==    by 0x1099AE: create_command (test_executor.c:113)
+==548401==    by 0x109A3D: test_status (test_executor.c:133)
+==548401==    by 0x10B4E2: main (test_executor.c:894)
+==548401== 
+==548401== 40 bytes in 1 blocks are still reachable in loss record 3 of 3
+==548401==    at 0x484D953: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548401==    by 0x109904: create_command (test_executor.c:96)
+==548401==    by 0x109A3D: test_status (test_executor.c:133)
+==548401==    by 0x10B4E2: main (test_executor.c:894)
+==548401== 
+==548401== LEAK SUMMARY:
+==548401==    definitely lost: 0 bytes in 0 blocks
+==548401==    indirectly lost: 0 bytes in 0 blocks
+==548401==      possibly lost: 0 bytes in 0 blocks
+==548401==    still reachable: 88 bytes in 3 blocks
+==548401==         suppressed: 0 bytes in 0 blocks
+==548401== 
+==548401== For lists of detected and suppressed errors, rerun with: -s
+==548401== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548471== 
+==548471== HEAP SUMMARY:
+==548471==     in use at exit: 181 bytes in 9 blocks
+==548471==   total heap usage: 769 allocs, 760 frees, 48,188 bytes allocated
+==548471== 
+==548471== 5 bytes in 1 blocks are still reachable in loss record 1 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x492443E: strdup (strdup.c:42)
+==548471==    by 0x10DC8C: parse_command (parser.c:178)
+==548471==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548471==    by 0x10D87F: parse_and_or (parser.c:61)
+==548471==    by 0x10D6F8: parse_list (parser.c:7)
+==548471==    by 0x10DEB1: parser_parse (parser.c:235)
+==548471==    by 0x109F97: execute_line (test_executor.c:284)
+==548471==    by 0x10B1C7: test_background_reaping (test_executor.c:783)
+==548471==    by 0x10B677: main (test_executor.c:962)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 2 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10C97F: execute_background (executor.c:367)
+==548471==    by 0x10CCD9: execute_node (executor.c:481)
+==548471==    by 0x109FC1: execute_line (test_executor.c:290)
+==548471==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548471==    by 0x10B668: main (test_executor.c:959)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 3 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10C97F: execute_background (executor.c:367)
+==548471==    by 0x10CCD9: execute_node (executor.c:481)
+==548471==    by 0x109FC1: execute_line (test_executor.c:290)
+==548471==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548471==    by 0x10B66D: main (test_executor.c:960)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 4 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10C97F: execute_background (executor.c:367)
+==548471==    by 0x10CCD9: execute_node (executor.c:481)
+==548471==    by 0x109FC1: execute_line (test_executor.c:290)
+==548471==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548471==    by 0x10B66D: main (test_executor.c:960)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 5 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10C97F: execute_background (executor.c:367)
+==548471==    by 0x10CCD9: execute_node (executor.c:481)
+==548471==    by 0x109FC1: execute_line (test_executor.c:290)
+==548471==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548471==    by 0x10B66D: main (test_executor.c:960)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 6 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10C97F: execute_background (executor.c:367)
+==548471==    by 0x10CCD9: execute_node (executor.c:481)
+==548471==    by 0x109FC1: execute_line (test_executor.c:290)
+==548471==    by 0x10B14F: test_background_job_list (test_executor.c:764)
+==548471==    by 0x10B672: main (test_executor.c:961)
+==548471== 
+==548471== 16 bytes in 1 blocks are still reachable in loss record 7 of 9
+==548471==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10DC2F: parse_command (parser.c:172)
+==548471==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548471==    by 0x10D87F: parse_and_or (parser.c:61)
+==548471==    by 0x10D6F8: parse_list (parser.c:7)
+==548471==    by 0x10DEB1: parser_parse (parser.c:235)
+==548471==    by 0x109F97: execute_line (test_executor.c:284)
+==548471==    by 0x10B1C7: test_background_reaping (test_executor.c:783)
+==548471==    by 0x10B677: main (test_executor.c:962)
+==548471== 
+==548471== 40 bytes in 1 blocks are still reachable in loss record 8 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10DB5A: parse_command (parser.c:144)
+==548471==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548471==    by 0x10D87F: parse_and_or (parser.c:61)
+==548471==    by 0x10D6F8: parse_list (parser.c:7)
+==548471==    by 0x10DEB1: parser_parse (parser.c:235)
+==548471==    by 0x109F97: execute_line (test_executor.c:284)
+==548471==    by 0x10B1C7: test_background_reaping (test_executor.c:783)
+==548471==    by 0x10B677: main (test_executor.c:962)
+==548471== 
+==548471== 40 bytes in 1 blocks are still reachable in loss record 9 of 9
+==548471==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548471==    by 0x10D73C: parse_list (parser.c:19)
+==548471==    by 0x10DEB1: parser_parse (parser.c:235)
+==548471==    by 0x109F97: execute_line (test_executor.c:284)
+==548471==    by 0x10B1C7: test_background_reaping (test_executor.c:783)
+==548471==    by 0x10B677: main (test_executor.c:962)
+==548471== 
+==548471== LEAK SUMMARY:
+==548471==    definitely lost: 0 bytes in 0 blocks
+==548471==    indirectly lost: 0 bytes in 0 blocks
+==548471==      possibly lost: 0 bytes in 0 blocks
+==548471==    still reachable: 181 bytes in 9 blocks
+==548471==         suppressed: 0 bytes in 0 blocks
+==548471== 
+==548471== For lists of detected and suppressed errors, rerun with: -s
+==548471== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548457== 
+==548457== HEAP SUMMARY:
+==548457==     in use at exit: 112 bytes in 5 blocks
+==548457==   total heap usage: 688 allocs, 683 frees, 46,836 bytes allocated
+==548457== 
+==548457== 8 bytes in 2 blocks are still reachable in loss record 1 of 4
+==548457==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548457==    by 0x492443E: strdup (strdup.c:42)
+==548457==    by 0x10DC8C: parse_command (parser.c:178)
+==548457==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548457==    by 0x10D87F: parse_and_or (parser.c:61)
+==548457==    by 0x10D6F8: parse_list (parser.c:7)
+==548457==    by 0x10DEB1: parser_parse (parser.c:235)
+==548457==    by 0x109F97: execute_line (test_executor.c:284)
+==548457==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548457==    by 0x10B668: main (test_executor.c:959)
+==548457== 
+==548457== 24 bytes in 1 blocks are still reachable in loss record 2 of 4
+==548457==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548457==    by 0x10DC2F: parse_command (parser.c:172)
+==548457==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548457==    by 0x10D87F: parse_and_or (parser.c:61)
+==548457==    by 0x10D6F8: parse_list (parser.c:7)
+==548457==    by 0x10DEB1: parser_parse (parser.c:235)
+==548457==    by 0x109F97: execute_line (test_executor.c:284)
+==548457==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548457==    by 0x10B668: main (test_executor.c:959)
+==548457== 
+==548457== 40 bytes in 1 blocks are still reachable in loss record 3 of 4
+==548457==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548457==    by 0x10DB5A: parse_command (parser.c:144)
+==548457==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548457==    by 0x10D87F: parse_and_or (parser.c:61)
+==548457==    by 0x10D6F8: parse_list (parser.c:7)
+==548457==    by 0x10DEB1: parser_parse (parser.c:235)
+==548457==    by 0x109F97: execute_line (test_executor.c:284)
+==548457==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548457==    by 0x10B668: main (test_executor.c:959)
+==548457== 
+==548457== 40 bytes in 1 blocks are still reachable in loss record 4 of 4
+==548457==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548457==    by 0x10D73C: parse_list (parser.c:19)
+==548457==    by 0x10DEB1: parser_parse (parser.c:235)
+==548457==    by 0x109F97: execute_line (test_executor.c:284)
+==548457==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548457==    by 0x10B668: main (test_executor.c:959)
+==548457== 
+==548457== LEAK SUMMARY:
+==548457==    definitely lost: 0 bytes in 0 blocks
+==548457==    indirectly lost: 0 bytes in 0 blocks
+==548457==      possibly lost: 0 bytes in 0 blocks
+==548457==    still reachable: 112 bytes in 5 blocks
+==548457==         suppressed: 0 bytes in 0 blocks
+==548457== 
+==548457== For lists of detected and suppressed errors, rerun with: -s
+==548457== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548459== 
+==548459== HEAP SUMMARY:
+==548459==     in use at exit: 144 bytes in 7 blocks
+==548459==   total heap usage: 722 allocs, 715 frees, 47,390 bytes allocated
+==548459== 
+==548459== 8 bytes in 2 blocks are still reachable in loss record 1 of 6
+==548459==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x492443E: strdup (strdup.c:42)
+==548459==    by 0x10DC8C: parse_command (parser.c:178)
+==548459==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548459==    by 0x10D87F: parse_and_or (parser.c:61)
+==548459==    by 0x10D6F8: parse_list (parser.c:7)
+==548459==    by 0x10DEB1: parser_parse (parser.c:235)
+==548459==    by 0x109F97: execute_line (test_executor.c:284)
+==548459==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548459==    by 0x10B66D: main (test_executor.c:960)
+==548459== 
+==548459== 16 bytes in 1 blocks are still reachable in loss record 2 of 6
+==548459==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x10C97F: execute_background (executor.c:367)
+==548459==    by 0x10CCD9: execute_node (executor.c:481)
+==548459==    by 0x109FC1: execute_line (test_executor.c:290)
+==548459==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548459==    by 0x10B668: main (test_executor.c:959)
+==548459== 
+==548459== 16 bytes in 1 blocks are still reachable in loss record 3 of 6
+==548459==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x10C97F: execute_background (executor.c:367)
+==548459==    by 0x10CCD9: execute_node (executor.c:481)
+==548459==    by 0x109FC1: execute_line (test_executor.c:290)
+==548459==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548459==    by 0x10B66D: main (test_executor.c:960)
+==548459== 
+==548459== 24 bytes in 1 blocks are still reachable in loss record 4 of 6
+==548459==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x10DC2F: parse_command (parser.c:172)
+==548459==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548459==    by 0x10D87F: parse_and_or (parser.c:61)
+==548459==    by 0x10D6F8: parse_list (parser.c:7)
+==548459==    by 0x10DEB1: parser_parse (parser.c:235)
+==548459==    by 0x109F97: execute_line (test_executor.c:284)
+==548459==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548459==    by 0x10B66D: main (test_executor.c:960)
+==548459== 
+==548459== 40 bytes in 1 blocks are still reachable in loss record 5 of 6
+==548459==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x10DB5A: parse_command (parser.c:144)
+==548459==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548459==    by 0x10D87F: parse_and_or (parser.c:61)
+==548459==    by 0x10D6F8: parse_list (parser.c:7)
+==548459==    by 0x10DEB1: parser_parse (parser.c:235)
+==548459==    by 0x109F97: execute_line (test_executor.c:284)
+==548459==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548459==    by 0x10B66D: main (test_executor.c:960)
+==548459== 
+==548459== 40 bytes in 1 blocks are still reachable in loss record 6 of 6
+==548459==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548459==    by 0x10D73C: parse_list (parser.c:19)
+==548459==    by 0x10DEB1: parser_parse (parser.c:235)
+==548459==    by 0x109F97: execute_line (test_executor.c:284)
+==548459==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548459==    by 0x10B66D: main (test_executor.c:960)
+==548459== 
+==548459== LEAK SUMMARY:
+==548459==    definitely lost: 0 bytes in 0 blocks
+==548459==    indirectly lost: 0 bytes in 0 blocks
+==548459==      possibly lost: 0 bytes in 0 blocks
+==548459==    still reachable: 144 bytes in 7 blocks
+==548459==         suppressed: 0 bytes in 0 blocks
+==548459== 
+==548459== For lists of detected and suppressed errors, rerun with: -s
+==548459== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548458== 
+==548458== HEAP SUMMARY:
+==548458==     in use at exit: 128 bytes in 6 blocks
+==548458==   total heap usage: 705 allocs, 699 frees, 47,113 bytes allocated
+==548458== 
+==548458== 8 bytes in 2 blocks are still reachable in loss record 1 of 5
+==548458==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548458==    by 0x492443E: strdup (strdup.c:42)
+==548458==    by 0x10DC8C: parse_command (parser.c:178)
+==548458==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548458==    by 0x10D87F: parse_and_or (parser.c:61)
+==548458==    by 0x10D6F8: parse_list (parser.c:7)
+==548458==    by 0x10DEB1: parser_parse (parser.c:235)
+==548458==    by 0x109F97: execute_line (test_executor.c:284)
+==548458==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548458==    by 0x10B66D: main (test_executor.c:960)
+==548458== 
+==548458== 16 bytes in 1 blocks are still reachable in loss record 2 of 5
+==548458==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548458==    by 0x10C97F: execute_background (executor.c:367)
+==548458==    by 0x10CCD9: execute_node (executor.c:481)
+==548458==    by 0x109FC1: execute_line (test_executor.c:290)
+==548458==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548458==    by 0x10B668: main (test_executor.c:959)
+==548458== 
+==548458== 24 bytes in 1 blocks are still reachable in loss record 3 of 5
+==548458==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548458==    by 0x10DC2F: parse_command (parser.c:172)
+==548458==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548458==    by 0x10D87F: parse_and_or (parser.c:61)
+==548458==    by 0x10D6F8: parse_list (parser.c:7)
+==548458==    by 0x10DEB1: parser_parse (parser.c:235)
+==548458==    by 0x109F97: execute_line (test_executor.c:284)
+==548458==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548458==    by 0x10B66D: main (test_executor.c:960)
+==548458== 
+==548458== 40 bytes in 1 blocks are still reachable in loss record 4 of 5
+==548458==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548458==    by 0x10DB5A: parse_command (parser.c:144)
+==548458==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548458==    by 0x10D87F: parse_and_or (parser.c:61)
+==548458==    by 0x10D6F8: parse_list (parser.c:7)
+==548458==    by 0x10DEB1: parser_parse (parser.c:235)
+==548458==    by 0x109F97: execute_line (test_executor.c:284)
+==548458==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548458==    by 0x10B66D: main (test_executor.c:960)
+==548458== 
+==548458== 40 bytes in 1 blocks are still reachable in loss record 5 of 5
+==548458==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548458==    by 0x10D73C: parse_list (parser.c:19)
+==548458==    by 0x10DEB1: parser_parse (parser.c:235)
+==548458==    by 0x109F97: execute_line (test_executor.c:284)
+==548458==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548458==    by 0x10B66D: main (test_executor.c:960)
+==548458== 
+==548458== LEAK SUMMARY:
+==548458==    definitely lost: 0 bytes in 0 blocks
+==548458==    indirectly lost: 0 bytes in 0 blocks
+==548458==      possibly lost: 0 bytes in 0 blocks
+==548458==    still reachable: 128 bytes in 6 blocks
+==548458==         suppressed: 0 bytes in 0 blocks
+==548458== 
+==548458== For lists of detected and suppressed errors, rerun with: -s
+==548458== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548463== 
+==548463== HEAP SUMMARY:
+==548463==     in use at exit: 160 bytes in 8 blocks
+==548463==   total heap usage: 739 allocs, 731 frees, 47,667 bytes allocated
+==548463== 
+==548463== 8 bytes in 2 blocks are still reachable in loss record 1 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x492443E: strdup (strdup.c:42)
+==548463==    by 0x10DC8C: parse_command (parser.c:178)
+==548463==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548463==    by 0x10D87F: parse_and_or (parser.c:61)
+==548463==    by 0x10D6F8: parse_list (parser.c:7)
+==548463==    by 0x10DEB1: parser_parse (parser.c:235)
+==548463==    by 0x109F97: execute_line (test_executor.c:284)
+==548463==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== 16 bytes in 1 blocks are still reachable in loss record 2 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10C97F: execute_background (executor.c:367)
+==548463==    by 0x10CCD9: execute_node (executor.c:481)
+==548463==    by 0x109FC1: execute_line (test_executor.c:290)
+==548463==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548463==    by 0x10B668: main (test_executor.c:959)
+==548463== 
+==548463== 16 bytes in 1 blocks are still reachable in loss record 3 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10C97F: execute_background (executor.c:367)
+==548463==    by 0x10CCD9: execute_node (executor.c:481)
+==548463==    by 0x109FC1: execute_line (test_executor.c:290)
+==548463==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== 16 bytes in 1 blocks are still reachable in loss record 4 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10C97F: execute_background (executor.c:367)
+==548463==    by 0x10CCD9: execute_node (executor.c:481)
+==548463==    by 0x109FC1: execute_line (test_executor.c:290)
+==548463==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== 24 bytes in 1 blocks are still reachable in loss record 5 of 7
+==548463==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10DC2F: parse_command (parser.c:172)
+==548463==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548463==    by 0x10D87F: parse_and_or (parser.c:61)
+==548463==    by 0x10D6F8: parse_list (parser.c:7)
+==548463==    by 0x10DEB1: parser_parse (parser.c:235)
+==548463==    by 0x109F97: execute_line (test_executor.c:284)
+==548463==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== 40 bytes in 1 blocks are still reachable in loss record 6 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10DB5A: parse_command (parser.c:144)
+==548463==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548463==    by 0x10D87F: parse_and_or (parser.c:61)
+==548463==    by 0x10D6F8: parse_list (parser.c:7)
+==548463==    by 0x10DEB1: parser_parse (parser.c:235)
+==548463==    by 0x109F97: execute_line (test_executor.c:284)
+==548463==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== 40 bytes in 1 blocks are still reachable in loss record 7 of 7
+==548463==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548463==    by 0x10D73C: parse_list (parser.c:19)
+==548463==    by 0x10DEB1: parser_parse (parser.c:235)
+==548463==    by 0x109F97: execute_line (test_executor.c:284)
+==548463==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548463==    by 0x10B66D: main (test_executor.c:960)
+==548463== 
+==548463== LEAK SUMMARY:
+==548463==    definitely lost: 0 bytes in 0 blocks
+==548463==    indirectly lost: 0 bytes in 0 blocks
+==548463==      possibly lost: 0 bytes in 0 blocks
+==548463==    still reachable: 160 bytes in 8 blocks
+==548463==         suppressed: 0 bytes in 0 blocks
+==548463== 
+==548463== For lists of detected and suppressed errors, rerun with: -s
+==548463== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548464== 
+==548464== HEAP SUMMARY:
+==548464==     in use at exit: 176 bytes in 9 blocks
+==548464==   total heap usage: 756 allocs, 747 frees, 47,944 bytes allocated
+==548464== 
+==548464== 8 bytes in 2 blocks are still reachable in loss record 1 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x492443E: strdup (strdup.c:42)
+==548464==    by 0x10DC8C: parse_command (parser.c:178)
+==548464==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548464==    by 0x10D87F: parse_and_or (parser.c:61)
+==548464==    by 0x10D6F8: parse_list (parser.c:7)
+==548464==    by 0x10DEB1: parser_parse (parser.c:235)
+==548464==    by 0x109F97: execute_line (test_executor.c:284)
+==548464==    by 0x10B14F: test_background_job_list (test_executor.c:764)
+==548464==    by 0x10B672: main (test_executor.c:961)
+==548464== 
+==548464== 16 bytes in 1 blocks are still reachable in loss record 2 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10C97F: execute_background (executor.c:367)
+==548464==    by 0x10CCD9: execute_node (executor.c:481)
+==548464==    by 0x109FC1: execute_line (test_executor.c:290)
+==548464==    by 0x10B02C: test_background_execution (test_executor.c:726)
+==548464==    by 0x10B668: main (test_executor.c:959)
+==548464== 
+==548464== 16 bytes in 1 blocks are still reachable in loss record 3 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10C97F: execute_background (executor.c:367)
+==548464==    by 0x10CCD9: execute_node (executor.c:481)
+==548464==    by 0x109FC1: execute_line (test_executor.c:290)
+==548464==    by 0x10B0AA: test_multiple_background_jobs (test_executor.c:744)
+==548464==    by 0x10B66D: main (test_executor.c:960)
+==548464== 
+==548464== 16 bytes in 1 blocks are still reachable in loss record 4 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10C97F: execute_background (executor.c:367)
+==548464==    by 0x10CCD9: execute_node (executor.c:481)
+==548464==    by 0x109FC1: execute_line (test_executor.c:290)
+==548464==    by 0x10B0BC: test_multiple_background_jobs (test_executor.c:745)
+==548464==    by 0x10B66D: main (test_executor.c:960)
+==548464== 
+==548464== 16 bytes in 1 blocks are still reachable in loss record 5 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10C97F: execute_background (executor.c:367)
+==548464==    by 0x10CCD9: execute_node (executor.c:481)
+==548464==    by 0x109FC1: execute_line (test_executor.c:290)
+==548464==    by 0x10B0CE: test_multiple_background_jobs (test_executor.c:746)
+==548464==    by 0x10B66D: main (test_executor.c:960)
+==548464== 
+==548464== 24 bytes in 1 blocks are still reachable in loss record 6 of 8
+==548464==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10DC2F: parse_command (parser.c:172)
+==548464==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548464==    by 0x10D87F: parse_and_or (parser.c:61)
+==548464==    by 0x10D6F8: parse_list (parser.c:7)
+==548464==    by 0x10DEB1: parser_parse (parser.c:235)
+==548464==    by 0x109F97: execute_line (test_executor.c:284)
+==548464==    by 0x10B14F: test_background_job_list (test_executor.c:764)
+==548464==    by 0x10B672: main (test_executor.c:961)
+==548464== 
+==548464== 40 bytes in 1 blocks are still reachable in loss record 7 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10DB5A: parse_command (parser.c:144)
+==548464==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548464==    by 0x10D87F: parse_and_or (parser.c:61)
+==548464==    by 0x10D6F8: parse_list (parser.c:7)
+==548464==    by 0x10DEB1: parser_parse (parser.c:235)
+==548464==    by 0x109F97: execute_line (test_executor.c:284)
+==548464==    by 0x10B14F: test_background_job_list (test_executor.c:764)
+==548464==    by 0x10B672: main (test_executor.c:961)
+==548464== 
+==548464== 40 bytes in 1 blocks are still reachable in loss record 8 of 8
+==548464==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548464==    by 0x10D73C: parse_list (parser.c:19)
+==548464==    by 0x10DEB1: parser_parse (parser.c:235)
+==548464==    by 0x109F97: execute_line (test_executor.c:284)
+==548464==    by 0x10B14F: test_background_job_list (test_executor.c:764)
+==548464==    by 0x10B672: main (test_executor.c:961)
+==548464== 
+==548464== LEAK SUMMARY:
+==548464==    definitely lost: 0 bytes in 0 blocks
+==548464==    indirectly lost: 0 bytes in 0 blocks
+==548464==      possibly lost: 0 bytes in 0 blocks
+==548464==    still reachable: 176 bytes in 9 blocks
+==548464==         suppressed: 0 bytes in 0 blocks
+==548464== 
+==548464== For lists of detected and suppressed errors, rerun with: -s
+==548464== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548559== 
+==548559== HEAP SUMMARY:
+==548559==     in use at exit: 170 bytes in 7 blocks
+==548559==   total heap usage: 793 allocs, 786 frees, 48,739 bytes allocated
+==548559== 
+==548559== 16 bytes in 1 blocks are still reachable in loss record 1 of 6
+==548559==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x10DD7A: parse_command (parser.c:198)
+==548559==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548559==    by 0x10D87F: parse_and_or (parser.c:61)
+==548559==    by 0x10D6F8: parse_list (parser.c:7)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== 21 bytes in 2 blocks are still reachable in loss record 2 of 6
+==548559==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x492443E: strdup (strdup.c:42)
+==548559==    by 0x10DC8C: parse_command (parser.c:178)
+==548559==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548559==    by 0x10D87F: parse_and_or (parser.c:61)
+==548559==    by 0x10D6F8: parse_list (parser.c:7)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== 24 bytes in 1 blocks are still reachable in loss record 3 of 6
+==548559==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x10DC2F: parse_command (parser.c:172)
+==548559==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548559==    by 0x10D87F: parse_and_or (parser.c:61)
+==548559==    by 0x10D6F8: parse_list (parser.c:7)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== 29 bytes in 1 blocks are still reachable in loss record 4 of 6
+==548559==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x492443E: strdup (strdup.c:42)
+==548559==    by 0x10DDF7: parse_command (parser.c:206)
+==548559==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548559==    by 0x10D87F: parse_and_or (parser.c:61)
+==548559==    by 0x10D6F8: parse_list (parser.c:7)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== 40 bytes in 1 blocks are still reachable in loss record 5 of 6
+==548559==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x10DB5A: parse_command (parser.c:144)
+==548559==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548559==    by 0x10D87F: parse_and_or (parser.c:61)
+==548559==    by 0x10D6F8: parse_list (parser.c:7)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== 40 bytes in 1 blocks are still reachable in loss record 6 of 6
+==548559==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548559==    by 0x10D73C: parse_list (parser.c:19)
+==548559==    by 0x10DEB1: parser_parse (parser.c:235)
+==548559==    by 0x109F97: execute_line (test_executor.c:284)
+==548559==    by 0x10B256: test_background_redirection (test_executor.c:805)
+==548559==    by 0x10B67C: main (test_executor.c:963)
+==548559== 
+==548559== LEAK SUMMARY:
+==548559==    definitely lost: 0 bytes in 0 blocks
+==548559==    indirectly lost: 0 bytes in 0 blocks
+==548559==      possibly lost: 0 bytes in 0 blocks
+==548559==    still reachable: 170 bytes in 7 blocks
+==548559==         suppressed: 0 bytes in 0 blocks
+==548559== 
+==548559== For lists of detected and suppressed errors, rerun with: -s
+==548559== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548628== 
+==548628== HEAP SUMMARY:
+==548628==     in use at exit: 282 bytes in 12 blocks
+==548628==   total heap usage: 831 allocs, 819 frees, 53,998 bytes allocated
+==548628== 
+==548628== 4 bytes in 1 blocks are still reachable in loss record 1 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x492443E: strdup (strdup.c:42)
+==548628==    by 0x10DC8C: parse_command (parser.c:178)
+==548628==    by 0x10DA8A: parse_pipeline (parser.c:123)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 13 bytes in 2 blocks are still reachable in loss record 2 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x492443E: strdup (strdup.c:42)
+==548628==    by 0x10DC8C: parse_command (parser.c:178)
+==548628==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 16 bytes in 1 blocks are still reachable in loss record 3 of 11
+==548628==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DC2F: parse_command (parser.c:172)
+==548628==    by 0x10DA8A: parse_pipeline (parser.c:123)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 16 bytes in 1 blocks are still reachable in loss record 4 of 11
+==548628==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DD7A: parse_command (parser.c:198)
+==548628==    by 0x10DA8A: parse_pipeline (parser.c:123)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 16 bytes in 1 blocks are still reachable in loss record 5 of 11
+==548628==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DAC6: parse_pipeline (parser.c:129)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 24 bytes in 1 blocks are still reachable in loss record 6 of 11
+==548628==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DC2F: parse_command (parser.c:172)
+==548628==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 33 bytes in 1 blocks are still reachable in loss record 7 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x492443E: strdup (strdup.c:42)
+==548628==    by 0x10DDF7: parse_command (parser.c:206)
+==548628==    by 0x10DA8A: parse_pipeline (parser.c:123)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 40 bytes in 1 blocks are still reachable in loss record 8 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DB5A: parse_command (parser.c:144)
+==548628==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 40 bytes in 1 blocks are still reachable in loss record 9 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10D9F2: parse_pipeline (parser.c:105)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 40 bytes in 1 blocks are still reachable in loss record 10 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10DB5A: parse_command (parser.c:144)
+==548628==    by 0x10DA8A: parse_pipeline (parser.c:123)
+==548628==    by 0x10D87F: parse_and_or (parser.c:61)
+==548628==    by 0x10D6F8: parse_list (parser.c:7)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== 40 bytes in 1 blocks are still reachable in loss record 11 of 11
+==548628==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548628==    by 0x10D73C: parse_list (parser.c:19)
+==548628==    by 0x10DEB1: parser_parse (parser.c:235)
+==548628==    by 0x109F97: execute_line (test_executor.c:284)
+==548628==    by 0x10B32B: test_background_pipeline (test_executor.c:838)
+==548628==    by 0x10B681: main (test_executor.c:964)
+==548628== 
+==548628== LEAK SUMMARY:
+==548628==    definitely lost: 0 bytes in 0 blocks
+==548628==    indirectly lost: 0 bytes in 0 blocks
+==548628==      possibly lost: 0 bytes in 0 blocks
+==548628==    still reachable: 282 bytes in 12 blocks
+==548628==         suppressed: 0 bytes in 0 blocks
+==548628== 
+==548628== For lists of detected and suppressed errors, rerun with: -s
+==548628== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548692== 
+==548692== HEAP SUMMARY:
+==548692==     in use at exit: 112 bytes in 5 blocks
+==548692==   total heap usage: 848 allocs, 843 frees, 58,827 bytes allocated
+==548692== 
+==548692== 8 bytes in 2 blocks are still reachable in loss record 1 of 4
+==548692==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548692==    by 0x492443E: strdup (strdup.c:42)
+==548692==    by 0x10DC8C: parse_command (parser.c:178)
+==548692==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548692==    by 0x10D87F: parse_and_or (parser.c:61)
+==548692==    by 0x10D6F8: parse_list (parser.c:7)
+==548692==    by 0x10DEB1: parser_parse (parser.c:235)
+==548692==    by 0x109F97: execute_line (test_executor.c:284)
+==548692==    by 0x10B3E9: test_background_completion (test_executor.c:868)
+==548692==    by 0x10B686: main (test_executor.c:965)
+==548692== 
+==548692== 24 bytes in 1 blocks are still reachable in loss record 2 of 4
+==548692==    at 0x484DB80: realloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548692==    by 0x10DC2F: parse_command (parser.c:172)
+==548692==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548692==    by 0x10D87F: parse_and_or (parser.c:61)
+==548692==    by 0x10D6F8: parse_list (parser.c:7)
+==548692==    by 0x10DEB1: parser_parse (parser.c:235)
+==548692==    by 0x109F97: execute_line (test_executor.c:284)
+==548692==    by 0x10B3E9: test_background_completion (test_executor.c:868)
+==548692==    by 0x10B686: main (test_executor.c:965)
+==548692== 
+==548692== 40 bytes in 1 blocks are still reachable in loss record 3 of 4
+==548692==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548692==    by 0x10DB5A: parse_command (parser.c:144)
+==548692==    by 0x10D9AD: parse_pipeline (parser.c:95)
+==548692==    by 0x10D87F: parse_and_or (parser.c:61)
+==548692==    by 0x10D6F8: parse_list (parser.c:7)
+==548692==    by 0x10DEB1: parser_parse (parser.c:235)
+==548692==    by 0x109F97: execute_line (test_executor.c:284)
+==548692==    by 0x10B3E9: test_background_completion (test_executor.c:868)
+==548692==    by 0x10B686: main (test_executor.c:965)
+==548692== 
+==548692== 40 bytes in 1 blocks are still reachable in loss record 4 of 4
+==548692==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==548692==    by 0x10D73C: parse_list (parser.c:19)
+==548692==    by 0x10DEB1: parser_parse (parser.c:235)
+==548692==    by 0x109F97: execute_line (test_executor.c:284)
+==548692==    by 0x10B3E9: test_background_completion (test_executor.c:868)
+==548692==    by 0x10B686: main (test_executor.c:965)
+==548692== 
+==548692== LEAK SUMMARY:
+==548692==    definitely lost: 0 bytes in 0 blocks
+==548692==    indirectly lost: 0 bytes in 0 blocks
+==548692==      possibly lost: 0 bytes in 0 blocks
+==548692==    still reachable: 112 bytes in 5 blocks
+==548692==         suppressed: 0 bytes in 0 blocks
+==548692== 
+==548692== For lists of detected and suppressed errors, rerun with: -s
+==548692== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==548393== 
+==548393== HEAP SUMMARY:
+==548393==     in use at exit: 0 bytes in 0 blocks
+==548393==   total heap usage: 848 allocs, 848 frees, 58,827 bytes allocated
+==548393== 
+==548393== All heap blocks were freed -- no leaks are possible
+==548393== 
+==548393== For lists of detected and suppressed errors, rerun with: -s
+==548393== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
