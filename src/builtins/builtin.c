@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+#include "executor.h"
 #include "builtin.h"
 
 int is_builtin(const char *name)
@@ -13,7 +14,8 @@ int is_builtin(const char *name)
            strcmp(name, "exit") == 0 ||
            strcmp(name, "pwd") == 0 ||
            strcmp(name, "export") == 0 ||
-           strcmp(name, "unset") == 0;
+           strcmp(name, "unset") == 0 ||
+           strcmp(name, "jobs") == 0;
 }
 
 static int is_valid_variable_name(const char *name)
@@ -147,6 +149,16 @@ int execute_builtin(int argc, char **argv)
             perror("cd");
             return 1;
         }
+        return 0;
+    }
+    if (strcmp(argv[0], "jobs") == 0)
+    {
+        if (argc > 1)
+        {
+            fprintf(stderr, "jobs: too many arguments\n");
+            return 1;
+        }
+        print_background_jobs();
         return 0;
     }
     return 1;

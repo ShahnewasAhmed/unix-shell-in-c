@@ -53,7 +53,6 @@ struct ASTNode
         } background;
 
     } data;
-
 };
 
 void ast_free(ASTNode *node);

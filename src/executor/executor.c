@@ -12,10 +12,12 @@
 typedef struct BackgroundProcess
 {
     pid_t pid;
+    int job_id;
     struct BackgroundProcess *next;
 } BackgroundProcess;
 
 static BackgroundProcess *background_process = NULL;
+static int next_job_id = 1;
 
 static int
 apply_redirections(Redirection *redirections, int count)
@@ -385,8 +387,11 @@ static int execute_background(ASTNode *node)
         _exit(status);
     }
     job->pid = pid;
+    job->job_id = next_job_id++;
     job->next = background_process;
     background_process = job;
+
+    printf("[%d] %d\n", job->job_id, job->pid);
     return 0;
 }
 
@@ -425,6 +430,16 @@ void reap_background_processes(void)
                 current = &job->next;
             }
         }
+    }
+}
+
+void print_background_jobs(void)
+{
+    BackgroundProcess *current = background_process;
+    while (current != NULL)
+    {
+        printf("[%d] %d\n", current->job_id, current->pid);
+        current = current->next;
     }
 }
 
